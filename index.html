@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portland District Builder (POC)</title>
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.31/esri/themes/light/main.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <div id="viewDiv"></div>
+
+      <aside id="panel">
+        <header class="panel-header">
+          <h1>District Builder</h1>
+          <p class="subtitle">Portland Area &middot; POC</p>
+        </header>
+
+        <!-- KPI / thresholds injected by src/kpi.ts -->
+        <section id="kpi" class="card"></section>
+
+        <!-- District list injected by src/districts.ts -->
+        <section id="districts" class="card"></section>
+
+        <!-- Coverage + actions injected by src/districts.ts -->
+        <section id="coverage" class="card"></section>
+      </aside>
+
+      <div id="statusBar"></div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

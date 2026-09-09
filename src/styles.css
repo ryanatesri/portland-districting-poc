@@ -1,0 +1,220 @@
+:root {
+  --panel-w: 340px;
+  --bg: #ffffff;
+  --ink: #1b1b1b;
+  --muted: #6b6b6b;
+  --line: #e2e2e2;
+  --accent: #2a6df0;
+  --ok: #2ca02c;
+  --warn: #b8860b;
+  --danger: #d62728;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #app {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 1fr var(--panel-w);
+  height: 100vh;
+  color: var(--ink);
+}
+
+#viewDiv {
+  height: 100%;
+  width: 100%;
+}
+
+#panel {
+  height: 100vh;
+  overflow-y: auto;
+  border-left: 1px solid var(--line);
+  background: #fafafa;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panel-header h1 {
+  font-size: 18px;
+  margin: 0;
+}
+.subtitle {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+.card h2 {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+}
+.stat-num {
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.threshold-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.threshold-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.threshold-row input {
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.progress { margin-bottom: 10px; }
+.progress-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.bar {
+  height: 8px;
+  background: #ededed;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.15s ease;
+}
+.bar-fill.met { background: var(--ok); }
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+.btn {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+.btn:hover:not(:disabled) { background: #f0f0f0; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn.primary:hover:not(:disabled) { background: #1f5ad0; }
+.btn.danger { color: var(--danger); border-color: #f0c4c4; }
+
+.empty {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 0;
+}
+
+.district-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.district-row {
+  display: grid;
+  grid-template-columns: 16px 1fr auto;
+  grid-template-areas: "swatch name close" "swatch meta close";
+  align-items: center;
+  column-gap: 8px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.swatch {
+  grid-area: swatch;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+.district-name {
+  grid-area: name;
+  font-weight: 600;
+  font-size: 13px;
+}
+.district-meta {
+  grid-area: meta;
+  font-size: 11px;
+  color: var(--muted);
+}
+.link-btn {
+  grid-area: close;
+  border: none;
+  background: none;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+}
+.link-btn:hover { color: var(--danger); }
+
+#statusBar {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  max-width: calc(100% - var(--panel-w) - 24px);
+  padding: 0;
+}
+#statusBar.status {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+}
+#statusBar.info { border-left: 4px solid var(--accent); }
+#statusBar.warn { border-left: 4px solid var(--warn); }
+#statusBar.error { border-left: 4px solid var(--danger); }
